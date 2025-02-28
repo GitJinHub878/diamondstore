@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Event - Diamond Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #1b1b1b;
+            color: white;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        .event {
+            background: #292929;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 8px;
+        }
+        button {
+            background-color: #00aaff;
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0088cc;
+        }
+        .form-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #292929;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Join an Event</h1>
+        <div id="event-list"></div>
+    </div>
+
+    <!-- Join Event Form (Hidden by default) -->
+    <div id="joinForm" class="form-container hidden">
+        <h2>Join Event</h2>
+        <form id="joinEventForm">
+            <input type="hidden" id="eventName">
+            <label>Minecraft Name:</label>
+            <input type="text" id="mcName" required>
+            <label>Discord Username:</label>
+            <input type="text" id="discordName" required>
+            <button type="submit">Join Event</button>
+        </form>
+        <button id="closeForm">Close</button>
+    </div>
+
+    <script>
+        const API_URL = "https://script.google.com/macros/s/AKfycbwoGDtwj9WiKB6DItDErFFYbQtzrQX066BveOyAqvCQiZCdY7k-npHgLcwHWF0qLxfpFQ/exec";  // Replace with your Web App URL
+
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch(API_URL)
+                .then(response => response.json())
+                .then(events => displayEvents(events));
+
+            document.getElementById("joinEventForm").addEventListener("submit", submitForm);
+            document.getElementById("closeForm").addEventListener("click", () => {
+                document.getElementById("joinForm").classList.add("hidden");
+            });
+        });
+
+        function displayEvents(events) {
+            const eventList = document.getElementById("event-list");
+            eventList.innerHTML = "";
+
+            events.forEach(event => {
+                const eventDiv = document.createElement("div");
+                eventDiv.classList.add("event");
+                eventDiv.innerHTML = `
+                    <h2>${event.event_name}</h2>
+                    <p>Host: ${event.host}</p>
+                    <p>Date: ${event.date}</p>
+                    <button onclick="openForm('${event.event_name}')">Join</button>
+                `;
+                eventList.appendChild(eventDiv);
+            });
+        }
+
+        function openForm(eventName) {
+            document.getElementById("joinForm").classList.remove("hidden");
+            document.getElementById("eventName").value = eventName;
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+
+            const formData = new FormData();
+            formData.append("event_name", document.getElementById("eventName").value);
+            formData.append("mc_name", document.getElementById("mcName").value);
+            formData.append("discord_name", document.getElementById("discordName").value);
+
+            fetch(API_URL, {
+                method: "POST",
+                body: formData
+            }).then(() => {
+                alert("Joined successfully!");
+                document.getElementById("joinForm").classList.add("hidden");
+            }).catch(err => console.error("Error:", err));
+        }
+    </script>
+
+</body>
+</html>

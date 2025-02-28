@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamond Store</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: radial-gradient(circle, #222, #111);
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+        }
+
+        /* Login Box */
+        .login-container {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .login-container img {
+            width: 80px;
+            margin-bottom: 15px;
+        }
+
+        .login-container h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .login-container p {
+            font-size: 14px;
+            color: #cccccc;
+            margin-bottom: 20px;
+        }
+
+        /* Discord Button */
+        .discord-login {
+            display: inline-block;
+            background: #5865F2;
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(88, 101, 242, 0.7);
+        }
+
+        .discord-login:hover {
+            background: #4752C4;
+            box-shadow: 0 0 20px rgba(88, 101, 242, 1);
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <img src="https://cdn.iconscout.com/icon/free/png-256/discord-2474800-2056093.png" alt="Discord Logo">
+        <h1>Welcome to Diamond Store</h1>
+        <p>Login with Discord to access exclusive features and purchases.</p>
+        <a class="discord-login" href="https://discord.com/api/oauth2/authorize?client_id=1344377959636664480&redirect_uri=index.html&response_type=token&scope=identify">
+            Login with Discord
+        </a>
+    </div>
+
+</body>
+</html>

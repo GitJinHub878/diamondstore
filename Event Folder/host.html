@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Host An Event - Diamond Events</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 450px;
+            margin: 30px auto;
+            background-color: #222;
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            color: gold;
+        }
+        input, select {
+            width: 50%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background-color: gold;
+            color: black;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: darkgoldenrod;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Host An Event</h1>
+        <p>Fill out this form to host an event on Diamond Events.</p>
+        <form id="eventForm">
+            <input type="text" id="Eventname" placeholder="Event Name" required>
+            <input type="text" id="discordUsername" placeholder="Discord Username" required>
+            <input type="text" id="minecraftName" placeholder="Minecraft Name" required>
+            <select id="hostingAlone" required>
+                <option value="">Are you hosting alone?</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            <input type="number" id="playerCount" placeholder="Number of Players" required>
+            <input type="datetime-local" id="eventDate" required><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        (function(){
+            emailjs.init("disQUYpdW0IBycFIY"); // Replace with your EmailJS Public Key
+        })();
+
+        document.getElementById('eventForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            emailjs.send("service_7hi75yy", "template_yiubxsf", {
+                discord_username: document.getElementById("discordUsername").value,
+                minecraft_name: document.getElementById("minecraftName").value,
+                hosting_alone: document.getElementById("hostingAlone").value,
+                player_count: document.getElementById("playerCount").value,
+                event_date: document.getElementById("eventDate").value
+            }).then(function(response) {
+                alert("Event request sent successfully!");
+            }, function(error) {
+                alert("Failed to send event request. Please try again.");
+            });
+        });
+    </script>
+</body>
+</html>

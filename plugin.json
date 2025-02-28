@@ -1,0 +1,13 @@
+[
+    {
+      "name": "Awesome Plugin",
+      "image": "plugin-image.jpg",
+      "description": "A fantastic plugin for your server!",
+      "version": "1.5.2",
+      "type": "Spigot",
+      "price": "$10.00",
+      "salePrice": "$5.00",
+      "download": "https://example.com/download"
+    }
+  ]
+  

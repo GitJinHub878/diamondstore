@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LODESTONE</title>
+    <style>
+        /* General Styles */
+        body {
+            background-color: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+    
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            padding: 15px 20px;
+        }
+    
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    
+        .logo img {
+            width: 30px;
+            margin-right: 10px;
+        }
+    
+        /* Auth Section */
+.auth-section {
+    display: flex;
+    align-items: center;
+}
+    
+        /* Login Button */
+.login-btn {
+    background-color: #5865F2;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-left: 10px;
+}
+    
+        .login-btn:hover {
+            background-color: #4752C4;
+        }
+    
+        .user-profile {
+            display: flex;
+            align-items: center;
+            display: none; /* Hidden until login */
+        }
+    
+        .user-profile img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+    
+        .logout-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+    
+        .logout-btn:hover {
+            background-color: darkred;
+        }
+    
+        /* Dropdown Menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px; /* Add spacing between Login and Menu */
+}
+
+    .menu-btn {
+        background-color: #222;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .menu-btn:hover {
+        background-color: #333;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #222;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-radius: 5px;
+        overflow: hidden;
+        right: 0; /* Makes sure the menu aligns properly */
+    }
+
+    .dropdown-content a {
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #333;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown-content hr {
+        border: 0.5px solid #444;
+    }
+    
+        /* Hero Section */
+        .hero-section {
+            margin-top: 50px;
+            padding: 20px;
+        }
+    
+        .block-icon {
+            width: 80px;
+        }
+    
+        h1 {
+            font-size: 28px;
+            font-weight: bold;
+        }
+    
+        p {
+            font-size: 16px;
+            color: #ccc;
+            max-width: 600px;
+            margin: auto;
+        }
+    
+        /* Buttons */
+        .buttons {
+            margin-top: 20px;
+        }
+    
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 5px;
+        }
+    
+        .join-event {
+            background-color: white;
+            color: black;
+        }
+    
+        .host-event {
+            background-color: gold;
+            color: black;
+        }
+    
+        /* Previously Used by Creators Section */
+        .creators-section {
+            margin-top: 50px;
+            padding: 20px;
+        }
+    
+        .creator-box {
+            background-color: #222;
+            padding: 15px;
+            margin: 10px auto;
+            width: 80%;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            color: white;
+        }
+    
+        .creator-box img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+    
+        .creator-box a {
+            color: gold;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+    </style>
+    </head>
+    <body>
+    <header>
+        <div class="auth-section">
+            <!-- Login Button -->
+            <a id="login-btn" class="login-btn" href="https://discord.com/api/oauth2/authorize?client_id=1344377959636664480&redirect_uri=index.html&response_type=token&scope=identify">
+                Login
+            </a>
+        
+            <!-- Dropdown Menu Button (Now Next to Login Button) -->
+            <div class="dropdown">
+                <button class="menu-btn">☰</button>
+                <div class="dropdown-content">
+                    <a href="index.html">Home</a>
+                    <a href="join.html">Events</a>
+                    <a href="plugin.html">Plugins</a>
+                    <a href="plugin.html">Store</a>
+                    <hr>
+                    <a href="https://discord.gg/cAB6U2kdUu">Discord</a>
+                    <a href="jobs.html">Jobs</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Refund Policy</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    
+    
+
+    <main>
+        <div class="hero-section">
+            <img src="lodestone-block.png" alt="Lodestone Block" class="block-icon">
+            <h1>Bringing the event community together.</h1>
+            <p>
+                Lodestone is a platform designed to bring the Minecraft event community together. 
+                From helping creators with hosting their own events, to helping players find events to play on.
+            </p>
+            <div class="buttons">
+                <button class="join-event" onclick="location.href='join.html'">Join an Event</button>
+                <button class="host-event" onclick="location.href='host.html'">Host an Event</button>
+            </div>
+            
+        </div>
+
+        <!-- Previously Used by Creators Section -->
+        <div class="creator-box">
+            <img src="diamond-booster-thumbnail.jpg" alt="Diamond Booster">
+            <a href="https://www.youtube.com/@DiamondBooster" target="_blank">Diamond Booster</a>
+        </div>
+        
+        <div class="creator-box">
+            <img src="diamond-network-thumbnail.jpg" alt="Diamond Network">
+            <a href="https://www.youtube.com/@DiamondNetwork" target="_blank">Diamond Network</a>
+        </div>
+        
+        <div class="creator-box">
+            <img src="mando-plays-thumbnail.jpg" alt="Mando Plays Minecraft">
+            <a href="https://www.youtube.com/@MandoPlaysMinecraft" target="_blank">Mando Plays Minecraft</a>
+        </div>
+        
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="lodestone-block.png" alt="Lodestone Block">
+                <span>LODESTONE</span>
+            </div>
+            <p>© Lodestone Services LLC 2024</p>
+            <div class="footer-links">
+                <div class="company">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                    </ul>
+                </div>
+                <div class="resources">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Docs</a></li>
+                        <li><a href="#">Status</a></li>
+                    </ul>
+                </div>
+                <div class="socials">
+                    <h4>Socials</h4>
+                    <ul>
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">X (Twitter)</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="footer-note">
+                LODESTONE IS NOT AN OFFICIAL MINECRAFT SERVICE. NOR APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
+            </p>
+        </div>
+    </footer>
+    
+    <style>
+        footer {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+    
+        .footer-content {
+            max-width: 800px;
+            margin: auto;
+        }
+    
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+    
+        .footer-logo img {
+            width: 30px;
+            margin-right: 10px;
+        }
+    
+        .footer-links {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+    
+        .footer-links h4 {
+            margin-bottom: 10px;
+        }
+    
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+    
+        .footer-links ul li {
+            margin: 5px 0;
+        }
+    
+        .footer-links ul li a {
+            color: white;
+            text-decoration: none;
+        }
+    
+        .footer-note {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #aaa;
+        }
+    </style>
+    
+    <script>
+        function toggleMenu() {
+            document.getElementById("dropdown-menu").classList.toggle("active");
+        }
+        function checkLogin() {
+            const fragment = new URLSearchParams(window.location.hash.slice(1));
+            const accessToken = fragment.get('access_token');
+
+            if (accessToken) {
+                fetch('https://discord.com/api/users/@me', {
+                    headers: { Authorization: `Bearer ${accessToken}` }
+                })
+                .then(response => response.json())
+                .then(user => {
+                    document.getElementById('login-btn').style.display = 'none';
+                    document.getElementById('user-profile').style.display = 'flex';
+                    document.getElementById('user-avatar').src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
+                    document.getElementById('username').innerText = user.username;
+                })
+                .catch(err => console.error('Failed to fetch user data', err));
+            }
+        }
+
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            window.location.href = window.location.pathname;
+        });
+
+        checkLogin();
+    </script>
+</body>
+</html>

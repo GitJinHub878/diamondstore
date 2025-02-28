@@ -1,0 +1,17 @@
+[
+    {
+      "id": 1,
+      "event_name": "Diamond PvP Tournament",
+      "host": "DiamondMaster",
+      "date": "March 10, 2025",
+      "max_players": 20
+    },
+    {
+      "id": 2,
+      "event_name": "Skyblock Challenge",
+      "host": "SkyKing",
+      "date": "March 15, 2025",
+      "max_players": 15
+    }
+  ]
+  
